@@ -25,7 +25,11 @@ export default function RootLayout({
         )}
       >
         <Providers>
-          <Suspense fallback={<p>Загрузка параметров...</p>}>
+          <Suspense
+            fallback={
+              <div className="w-full relative z-[2] top-30 mb-[250px] px-4 flex flex-col lg:flex-row items-center justify-between gap-8">Загрузка</div>
+            }
+          >
             <Header />
             {children}
             <Footer />
