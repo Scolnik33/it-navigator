@@ -1,10 +1,9 @@
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import type { ReactNode } from "react"
-import type { NavProps } from "react-day-picker"
 import { buttonVariants } from "./button"
 import { cn } from "@/lib/utils"
 
-export function CustomNav({ onPreviousClick, onNextClick, dir, className }: NavProps): ReactNode {
+export function CustomNav({ onPreviousClick, onNextClick, dir, className }: any): ReactNode {
   return (
     <div className={cn("flex items-center gap-1", className)}>
       <button
