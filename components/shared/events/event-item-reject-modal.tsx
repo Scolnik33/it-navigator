@@ -72,7 +72,7 @@ export const EventItemRejectModal: React.FC<Props> = ({
         icon: "✅",
       });
     } catch (err) {
-      console.log("Не удалось отклонить мероприятие");
+      console.log("Не удалось отклонить мероприятие: ", err);
       toast.error("Не удалось отклонить мероприятие", {
         icon: "❌",
       });

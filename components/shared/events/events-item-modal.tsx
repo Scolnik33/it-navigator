@@ -62,7 +62,7 @@ export const EventsItemModal: React.FC<Props> = ({
         icon: "✅",
       });
     } catch (err) {
-      console.log("Не удалось подтверждить мероприятие");
+      console.log("Не удалось подтверждить мероприятие: ", err);
       toast.error("Не удалось подтверждить мероприятие", {
         icon: "❌",
       });

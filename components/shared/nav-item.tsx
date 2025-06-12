@@ -3,13 +3,13 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 interface Props {
   className?: string;
   title: string;
   link: string;
-  variants: any;
+  variants: Variants;
 }
 
 const LinkScroll = dynamic(

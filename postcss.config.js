@@ -3,4 +3,4 @@ module.exports = {
     '@tailwindcss/postcss',
     'autoprefixer',
   ],
-};
+}; // РЕШИТЬ ПРОБЛЕМУ С ДЕПЛОЕМ ПРОЕКТА

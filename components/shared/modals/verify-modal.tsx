@@ -6,7 +6,7 @@ import { Button, InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui";
 import { getVerificationCode } from "@/lib/getVerificationCode";
 import { instance } from "@/services/axios";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { renderToStaticMarkup } from "react-dom/server";
 
@@ -50,9 +50,9 @@ export default function Verifing() {
     }
   };
 
-  const handleCode = async () => {
+  const handleCode = useCallback(async () => {
     try {
-      if (isLoading) true;
+      if (isLoading) return;
       setIsLoading(true);
 
       const res = await instance.post("/verify", {
@@ -76,7 +76,7 @@ export default function Verifing() {
       });
       setIsLoading(false);
     }
-  };
+  }, [code, isLoading, router]);
 
   useEffect(() => {
     if (code.length == 6) {

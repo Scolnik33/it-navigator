@@ -3,7 +3,13 @@ import type { ReactNode } from "react"
 import { buttonVariants } from "./button"
 import { cn } from "@/lib/utils"
 
-export function CustomNav({ onPreviousClick, onNextClick, dir, className }: any): ReactNode {
+interface CustomNavProps {
+  onPreviousClick: () => void
+  onNextClick: () => void
+  className?: string
+}
+
+export function CustomNav({ onPreviousClick, onNextClick, className }: CustomNavProps): ReactNode {
   return (
     <div className={cn("flex items-center gap-1", className)}>
       <button
