@@ -3,11 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   req: NextRequest,
-  context: { params: Promise<{ id: string }> }
+  context: { params: { id: string } } 
 ) {
   try {
-    const params = await context.params; 
-    const id = params.id;
+    const id = context.params.id;
 
     const company = await prisma.company.findFirst({
       where: { id: Number(id) },
@@ -15,10 +14,7 @@ export async function GET(
 
     return NextResponse.json(company);
   } catch (err) {
-    console.log("Error fetching one company:", err);
-    return NextResponse.json(
-      { error: "Failed to fetch one company" },
-      { status: 500 }
-    );
+    console.error("Error fetching one company:", err);
+    return NextResponse.json({ error: "Failed to fetch one company" }, { status: 500 });
   }
 }
