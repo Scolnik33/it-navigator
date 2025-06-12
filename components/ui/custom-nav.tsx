@@ -1,21 +1,9 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import type { ReactNode, MouseEventHandler, JSX } from "react";
-import { buttonVariants } from "./button";
-import { cn } from "@/lib/utils";
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import type { ReactNode } from "react"
+import { buttonVariants } from "./button"
+import { cn } from "@/lib/utils"
 
-interface CustomNavProps {
-  onPreviousClick: MouseEventHandler<HTMLButtonElement>;
-  onNextClick: MouseEventHandler<HTMLButtonElement>;
-  dir?: string; // Если нужен, иначе убрать
-  className?: string;
-}
-
-export function CustomNav({
-  onPreviousClick,
-  onNextClick,
-  dir,
-  className,
-}: CustomNavProps): JSX.Element {
+export function CustomNav({ onPreviousClick, onNextClick, dir, className }: any): ReactNode {
   return (
     <div className={cn("flex items-center gap-1", className)}>
       <button
@@ -39,5 +27,5 @@ export function CustomNav({
         <ChevronRight className="size-4" />
       </button>
     </div>
-  );
+  )
 }
