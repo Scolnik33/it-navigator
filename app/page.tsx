@@ -10,7 +10,7 @@ export default async function Home() {
   return (
     <>
       {/* Главный экран встречающий посетителя сайта */}
-      <Suspense fallback={<p>loading...</p>}>
+      <Suspense fallback={<div className="w-full h-min-screen flex items-center justify-center">loading...</div>}>
         <WelcomeScreen />
       </Suspense>
 
