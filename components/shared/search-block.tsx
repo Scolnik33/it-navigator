@@ -26,7 +26,7 @@ export const SearchBlock: React.FC = () => {
   }, [value]);
 
   return (
-    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-6">
+    <div className="relative flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-6">
       {!isVisible && (
         <>
           {session != null && <Sidebar />}
@@ -48,14 +48,14 @@ export const SearchBlock: React.FC = () => {
       )}
 
       {isLoading && isVisible && (
-        <div className="w-[225px] lg:w-[200px] absolute mt-2 top-[77%] lg:top-[65%] left-[15px] lg:left-[1134px] border border-slate-200 rounded-md bg-white shadow-md z-10">
+        <div className="w-[225px] lg:w-[200px] absolute top-full left-0 mt-2 border border-slate-200 rounded-md bg-white shadow-md z-10">
           <Button loading={true} variant={"link"} className="w-full" />
         </div>
       )}
 
       {value.length > 0 && isVisible && !isLoading && (
         <div
-          className={`w-[225px] lg:w-[200px] absolute mt-2 top-[77%] lg:top-[65%] left-[15px] lg:left-[1134px] border border-slate-200 rounded-md bg-white shadow-md z-10 ${
+          className={`w-[225px] lg:w-[200px] absolute top-full left-0 mt-2 border border-slate-200 rounded-md bg-white shadow-md z-10 ${
             popupIsOpen ? "hidden" : ""
           }`}
         >
