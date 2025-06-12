@@ -48,14 +48,14 @@ export const SearchBlock: React.FC = () => {
       )}
 
       {isLoading && isVisible && (
-        <div className="absolute top-full mt-2 left-0 right-0 border border-slate-200 rounded-md bg-white shadow-md z-10">
+        <div className="w-[225px] lg:w-[200px] absolute mt-2 top-[77%] lg:top-[65%] left-[15px] lg:left-[1134px] border border-slate-200 rounded-md bg-white shadow-md z-10">
           <Button loading={true} variant={"link"} className="w-full" />
         </div>
       )}
 
       {value.length > 0 && isVisible && !isLoading && (
         <div
-          className={`absolute top-full mt-2 left-0 right-0 border border-slate-200 rounded-md bg-white shadow-md z-10 ${
+          className={`w-[225px] lg:w-[200px] absolute mt-2 top-[77%] lg:top-[65%] left-[15px] lg:left-[1134px] border border-slate-200 rounded-md bg-white shadow-md z-10 ${
             popupIsOpen ? "hidden" : ""
           }`}
         >
