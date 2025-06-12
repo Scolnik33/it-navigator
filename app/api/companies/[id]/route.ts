@@ -3,11 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   req: NextRequest,
-  context: { params: Promise<{ id: string }> }
+  context: { params: { id: string } }
 ) {
   try {
-    const params = await context.params;
-    const id = params.id;
+    const id = context.params.id;
 
     const company = await prisma.company.findFirst({
       where: {
