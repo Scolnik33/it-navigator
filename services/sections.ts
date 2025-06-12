@@ -1,6 +1,6 @@
 import { Company, Education, Event } from "@prisma/client";
-import { instance } from "./axios";
 import { EventFilter } from "@/store/sections";
+import { instance } from "@/lib/api";
 
 export const getEvents = async (filters?: EventFilter): Promise<Event[]> => {
   const { data } = await instance.get<Event[]>("events", { params: filters });

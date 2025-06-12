@@ -1,4 +1,4 @@
-import { instanceAdmin } from "./axios";
+import { instanceAdmin } from "@/lib/api";
 
 export const rejectEvent = async (
   id: number,

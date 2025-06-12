@@ -1,5 +1,5 @@
+import { instance } from "@/lib/api";
 import { Company, Education, Event } from "@prisma/client";
-import { instance } from "./axios";
 
 export const getOneEvent = async (id: number): Promise<Event> => {
   const { data } = await instance.get<Event>(`events/${id}`);

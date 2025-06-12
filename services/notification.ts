@@ -1,5 +1,5 @@
+import { instance } from "@/lib/api";
 import { Notification } from "@prisma/client";
-import { instance } from "./axios";
 
 export const getNotifications = async (
   userId: number
