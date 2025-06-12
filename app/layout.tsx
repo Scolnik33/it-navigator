@@ -27,7 +27,9 @@ export default function RootLayout({
         <Providers>
           <Suspense
             fallback={
-              <div className="w-full relative z-[2] top-30 mb-[250px] px-4 flex flex-col lg:flex-row items-center justify-between gap-8">Загрузка</div>
+              <div className="w-full h-min-[screen] px-4 flex flex-col items-center justify-between">
+                Загрузка
+              </div>
             }
           >
             <Header />
