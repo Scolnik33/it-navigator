@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+const apiBaseUrl =
+  process.env.NODE_ENV === 'production'
+    ? 'https://it-navigator.vercel.app'
+    : '';
 
 export const instance = axios.create({
   baseURL: apiBaseUrl + (process.env.NEXT_PUBLIC_API_URL || ''),

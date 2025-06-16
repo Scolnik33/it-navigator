@@ -42,7 +42,7 @@ export const AddEventForm: React.FC<Props> = ({
       image: null,
       company: "",
       description: "",
-      userId: Number(session?.user.id),
+      userId: Number(session?.user.id) || 0,
       date: "01.01 - 10.01",
       paid: false,
       online: false,
@@ -57,7 +57,7 @@ export const AddEventForm: React.FC<Props> = ({
         title: event.title,
         company: event.company,
         description: event.description,
-        userId: Number(session?.user.id),
+        userId: Number(session?.user.id) || 0,
         date: event.date ?? "01.01 - 10.01",
         paid: event.paid ?? false,
         online: event.online ?? false,
@@ -233,7 +233,6 @@ export const AddEventForm: React.FC<Props> = ({
               setValue("price", value, { shouldValidate: true })
             }
           />
-
           <DialogFooter>
             <Button
               disabled={!isValid}

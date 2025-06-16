@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
     if (uploadError) {
       console.error("Ошибка при загрузке:", uploadError);
       return NextResponse.json(
-        { error: "Ошибка при загрузке файла" },
+        { error: "Ошибка при загрузке файла", uploadError },
         { status: 500 }
       );
     }
