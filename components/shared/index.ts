@@ -24,4 +24,6 @@ export { Sidebar } from "./sidebar/sidebar";
 export { SidebarItem } from "./sidebar/sidebar-item";
 export { SidebarItemSkeleton } from "./sidebar/sidebar-item-skeleton";
 export { Footer } from "./footer";
+export { CheckStatus } from "./check-status";
+export { CheckStatusItem } from "./check-status-item";
 export { Providers } from "./providers";

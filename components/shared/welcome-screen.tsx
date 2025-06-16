@@ -9,6 +9,9 @@ import { useSearchParams, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import { animationVariants } from "@/lib/animation-variants";
+import { CheckStatus } from "./check-status";
+import { useUserEventsStore } from "@/store/user-events";
+import { useSession } from "next-auth/react";
 
 const LinkScroll = dynamic(
   () => import("react-scroll").then((mod) => mod.Link),
@@ -21,8 +24,28 @@ const Element = dynamic(
 );
 
 export const WelcomeScreen: React.FC = () => {
+  const events = useUserEventsStore((state) => state.events);
+  const getEvents = useUserEventsStore((state) => state.getEvents);
+  const { data: session } = useSession();
   const searchParams = useSearchParams();
   const router = useRouter();
+
+  const handleStatusEvents = async () => {
+    try {
+      await getEvents(Number(session?.user.id));
+    } catch (err) {
+      console.log("Error fetching status events data:", err);
+      toast.error("Не удалось загрузить статус мероприятий", {
+        icon: "❌",
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (session?.user) {
+      handleStatusEvents();
+    }
+  }, [session]);
 
   useEffect(() => {
     const verified = searchParams.get("verified");
@@ -79,8 +102,8 @@ export const WelcomeScreen: React.FC = () => {
         >
           <div className="lg:max-w-[800px] text-blue-700 leading-relaxed mt-4 text-sm sm:text-base md:text-lg">
             Добро пожаловать в ИТ-навигатор Омской области — ваш путеводитель по
-            цифровым возможностям региона. Здесь вы найдете все необходимые ресурсы
-            для развития в сфере информационных технологий и инноваций!
+            цифровым возможностям региона. Здесь вы найдете все необходимые
+            ресурсы для развития в сфере информационных технологий и инноваций!
           </div>
         </motion.div>
 
@@ -109,6 +132,15 @@ export const WelcomeScreen: React.FC = () => {
             variants={animationVariants}
           >
             <AddEventModal />
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 1, delay: 3 }}
+            variants={animationVariants}
+          >
+            {events.length > 0 && <CheckStatus events={events} />}
           </motion.div>
         </div>
       </div>
