@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_ANON_KEY!
 );
 
 export async function POST(req: NextRequest) {
@@ -19,9 +19,13 @@ export async function POST(req: NextRequest) {
     const fileName = `${Date.now()}.${fileExt}`;
     const filePath = `events/${fileName}`;
 
+    const arrayBuffer = await file.arrayBuffer();
+    const fileBuffer = new Uint8Array(arrayBuffer);
+
     const { error: uploadError } = await supabase.storage
       .from("uploads")
-      .upload(filePath, file, {
+      .upload(filePath, fileBuffer, {
+        contentType: file.type,
         cacheControl: "3600",
         upsert: false,
       });
