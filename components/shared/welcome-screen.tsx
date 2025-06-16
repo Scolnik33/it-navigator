@@ -42,9 +42,7 @@ export const WelcomeScreen: React.FC = () => {
   };
 
   useEffect(() => {
-    if (session?.user) {
-      handleStatusEvents();
-    }
+    handleStatusEvents();
   }, [session]);
 
   useEffect(() => {
