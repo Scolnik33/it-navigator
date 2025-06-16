@@ -1,33 +1,44 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
-import { Buffer } from "buffer"; // если нужно
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 export async function POST(req: NextRequest) {
-  const formData = await req.formData();
-  const file: File | null = formData.get("file") as unknown as File;
+  try {
+    const formData = await req.formData();
+    const file = formData.get("file") as File;
 
-  if (!file) {
-    return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
+    if (!file) {
+      return NextResponse.json({ error: "Файл не найден" }, { status: 400 });
+    }
+
+    const fileExt = file.name.split(".").pop();
+    const fileName = `${Date.now()}.${fileExt}`;
+    const filePath = `events/${fileName}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("uploads")
+      .upload(filePath, file, {
+        cacheControl: "3600",
+        upsert: false,
+      });
+
+    if (uploadError) {
+      console.error("Ошибка при загрузке:", uploadError);
+      return NextResponse.json(
+        { error: "Ошибка при загрузке файла" },
+        { status: 500 }
+      );
+    }
+
+    const { data } = supabase.storage.from("uploads").getPublicUrl(filePath);
+
+    return NextResponse.json({ url: data.publicUrl }, { status: 200 });
+  } catch (error) {
+    console.error("Ошибка сервера:", error);
+    return NextResponse.json({ error: "Ошибка сервера" }, { status: 500 });
   }
-
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
-
-  const fileName = `${Date.now()}-${file.name}`;
-
-  const { error } = await supabase.storage
-    .from("uploads") 
-    .upload(fileName, buffer, {
-      contentType: file.type,
-    });
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
-
-  const { data: publicUrlData } = supabase.storage
-    .from("uploads")
-    .getPublicUrl(fileName);
-
-  return NextResponse.json({ url: publicUrlData.publicUrl });
 }
