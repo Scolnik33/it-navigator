@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
+import { Buffer } from "buffer"; // если нужно
 
 export async function POST(req: NextRequest) {
   const formData = await req.formData();
@@ -14,7 +15,7 @@ export async function POST(req: NextRequest) {
 
   const fileName = `${Date.now()}-${file.name}`;
 
-  const { data, error } = await supabase.storage
+  const { error } = await supabase.storage
     .from("uploads") 
     .upload(fileName, buffer, {
       contentType: file.type,
