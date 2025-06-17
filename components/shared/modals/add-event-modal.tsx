@@ -21,7 +21,7 @@ export const AddEventModal: React.FC = () => {
   const loading = useAuthLoading();
   const { data: session, status } = useSession();
 
-  // if (!(status === "authenticated" || loading)) return null;
+  if (!(status === "authenticated" || loading)) return null;
 
   return (
     <Dialog>
