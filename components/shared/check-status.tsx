@@ -29,7 +29,7 @@ export const CheckStatus: React.FC<Props> = ({ events, loading }) => {
           </Button>
         </DialogTrigger>
 
-        <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-4xl max-h-[80vh] overflow-y-auto">
           <Title className="font-bold" text="Статус мероприятий" size="md" />
 
           <div className="grid gap-4 justify-items-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
