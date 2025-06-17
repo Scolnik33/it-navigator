@@ -30,22 +30,22 @@ export const WelcomeScreen: React.FC = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const handleStatusEvents = async () => {
+  const handleStatusEvents = useCallback(async () => {
     try {
       await getEvents(Number(session?.user.id));
     } catch (err) {
-      console.log("Error fetching status events data:", err);
+      console.error("Error fetching status events data:", err);
       toast.error("Не удалось загрузить статус мероприятий", {
         icon: "❌",
       });
     }
-  };
-
-  alert('dadaa');
+  }, [getEvents, session?.user.id]);
 
   useEffect(() => {
-    handleStatusEvents();
-  }, [session]);
+    if (session) {
+      handleStatusEvents();
+    }
+  }, [session, handleStatusEvents]);
 
   useEffect(() => {
     const verified = searchParams.get("verified");
