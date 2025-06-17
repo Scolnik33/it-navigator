@@ -42,8 +42,11 @@ export const WelcomeScreen: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log("Session on prod:", session);
-    handleStatusEvents();
+    if (session) {
+      handleStatusEvents();
+    } else {
+      alert('hahah')
+    }
   }, [session]);
 
   useEffect(() => {
