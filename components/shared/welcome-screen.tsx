@@ -41,12 +41,10 @@ export const WelcomeScreen: React.FC = () => {
     }
   };
 
+  alert('dadaa');
+
   useEffect(() => {
-    if (session) {
-      handleStatusEvents();
-    } else {
-      alert('hahah')
-    }
+    handleStatusEvents();
   }, [session]);
 
   useEffect(() => {
