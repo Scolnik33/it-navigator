@@ -15,7 +15,7 @@ export const CheckStatus: React.FC<Props> = ({ events }) => {
         <DialogTrigger asChild>
           <Button
             size="xl"
-            variant="ghost"
+            variant="outline"
             className="text-sm md:text-base w-full sm:w-auto"
           >
             Статус мероприятий

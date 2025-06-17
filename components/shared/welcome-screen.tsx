@@ -107,7 +107,7 @@ export const WelcomeScreen: React.FC = () => {
           </div>
         </motion.div>
 
-        <div className="flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-4 mt-6">
+        <div className="flex flex-col flex-wrap sm:flex-row sm:justify-center lg:justify-start gap-4 mt-6">
           <motion.div
             initial="hidden"
             animate="visible"
