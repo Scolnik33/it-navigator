@@ -51,7 +51,7 @@ export const AddEventModal: React.FC = () => {
         </DialogTrigger>
       )}
 
-      <DialogContent>
+      <DialogContent className="max-h-[75vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>
             <Title

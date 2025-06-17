@@ -10,9 +10,7 @@ export const CheckStatusItem: React.FC<Event> = ({
 }) => {
   return (
     <div
-      className="border border-slate-200 rounded-2xl w-full max-w-sm sm:max-w-full sm:flex sm:flex-col 
-                 min-h-[400px] sm:min-h-[460px] md:min-h-[500px] 
-                 max-h-screen overflow-hidden"
+      className="border border-slate-200 rounded-2xl w-full max-w-sm sm:max-w-full sm:flex sm:flex-col overflow-hidden"
     >
       <img
         className="w-full h-[122px] sm:h-[180px] md:h-[200px] object-cover object-center rounded-t-2xl"
