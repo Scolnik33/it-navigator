@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { Title } from "./title";
 import { Button } from "../ui";
 import { AddEventModal } from "./modals/add-event-modal";
