@@ -33,7 +33,7 @@ export const WelcomeScreen: React.FC = () => {
 
   const handleStatusEvents = useCallback(async () => {
     try {
-      await getEvents(2);
+      await getEvents(Number(session?.user.id));
     } catch (err) {
       console.error("Error fetching status events data:", err);
       toast.error("Не удалось загрузить статус мероприятий", {
@@ -43,7 +43,9 @@ export const WelcomeScreen: React.FC = () => {
   }, [getEvents, session?.user.id]);
 
   useEffect(() => {
+    if (session) {
       handleStatusEvents();
+    }
   }, [session, handleStatusEvents]);
 
   useEffect(() => {
@@ -139,8 +141,7 @@ export const WelcomeScreen: React.FC = () => {
             transition={{ duration: 1, delay: 3 }}
             variants={animationVariants}
           >
-            {/* {events.length > 0 && <CheckStatus events={events} loading={loading} />} */}
-            <CheckStatus events={events} loading={loading} />
+            {events.length > 0 && <CheckStatus events={events} loading={loading} />}
           </motion.div>
         </div>
       </div>
