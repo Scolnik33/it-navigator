@@ -9,33 +9,34 @@ export const CheckStatusItem: React.FC<Event> = ({
   status,
 }) => {
   return (
-    <div className="border border-slate-200 rounded-2xl w-full max-w-sm">
+    <div
+      className="border border-slate-200 rounded-2xl w-full max-w-sm sm:max-w-full sm:flex sm:flex-col 
+                 min-h-[400px] sm:min-h-[460px] md:min-h-[500px] 
+                 max-h-screen overflow-hidden"
+    >
       <img
-        className="w-full max-h-[164px] h-[122px] object-cover object-center rounded-t-2xl"
+        className="w-full h-[122px] sm:h-[180px] md:h-[200px] object-cover object-center rounded-t-2xl"
         src={image ?? "/images/block-without-image.webp"}
-        alt={"fdsafdsafasd"}
+        alt="Event Image"
       />
-      <div className="p-4 w-full">
+      <div className="p-4 flex flex-col justify-between flex-grow">
         <DialogTitle>
-          <Title className="font-bold mt-2" text={title} size="sm" />
+          <Title className="font-bold mt-2 text-base " text={title} size="sm" />
         </DialogTitle>
-        <p className="text-slate-600 leading-relaxed font-light min-h-[120px] mt-2 break-words">
+        <p className="text-slate-600 leading-relaxed font-light mt-2 text-sm sm:text-base flex-grow break-words">
           {description.length > 100
             ? description.slice(0, 100) + "..."
             : description}
         </p>
-        <span>
+        <span className="block mt-4 text-sm sm:text-base font-medium">
           Статус:{" "}
-          {status == "ACCEPTED"
+          {status === "ACCEPTED"
             ? "Принято ✅"
-            : status == "REJECTED"
+            : status === "REJECTED"
               ? "Отклонено ❌"
-              : status == "WAITING" && "Ожидается ⏳"}
+              : status === "WAITING" && "Ожидается ⏳"}
         </span>
       </div>
     </div>
   );
 };
-// НА ХОСТИНГЕ НЕ ОТПРАВЛЯЕТСЯ ЗАПРОС ПОНЯТЬ ПОЧЕМУ !!!!!!!!!!!!!!!!!
-// СДЕЛАТЬ АДАПТИВНУЮ ВЕРСТКУ 
-// НУЖНО ЛИ ОТКРЫВАТЬ ПОПАП ПРИ НАЖАТИИ НА ОБЬЕКТ

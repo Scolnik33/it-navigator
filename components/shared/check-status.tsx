@@ -1,14 +1,21 @@
 import { Event } from "@prisma/client";
 import { Button } from "../ui";
-import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogTrigger,
+} from "../ui/dialog";
 import { CheckStatusItem } from "./index";
 import { Title } from "./title";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 interface Props {
-    events: Event[];
+  events: Event[];
+  loading: boolean;
 }
 
-export const CheckStatus: React.FC<Props> = ({ events }) => {
+export const CheckStatus: React.FC<Props> = ({ events, loading }) => {
   return (
     <>
       <Dialog>
@@ -22,14 +29,22 @@ export const CheckStatus: React.FC<Props> = ({ events }) => {
           </Button>
         </DialogTrigger>
 
-        <DialogContent className="sm:max-w-4xl">
+        <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto">
           <Title className="font-bold" text="Статус мероприятий" size="md" />
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid gap-4 justify-items-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {events.map((item) => (
               <CheckStatusItem key={item.id} {...item} />
             ))}
           </div>
+
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button loading={loading} type="button" variant="secondary">
+                Закрыть
+              </Button>
+            </DialogClose>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     </>

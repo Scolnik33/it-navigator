@@ -26,13 +26,14 @@ const Element = dynamic(
 export const WelcomeScreen: React.FC = () => {
   const events = useUserEventsStore((state) => state.events);
   const getEvents = useUserEventsStore((state) => state.getEvents);
+  const loading = useUserEventsStore((state) => state.loading);
   const { data: session } = useSession();
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const handleStatusEvents = useCallback(async () => {
     try {
-      await getEvents(Number(session?.user.id));
+      await getEvents(2);
     } catch (err) {
       console.error("Error fetching status events data:", err);
       toast.error("Не удалось загрузить статус мероприятий", {
@@ -42,9 +43,7 @@ export const WelcomeScreen: React.FC = () => {
   }, [getEvents, session?.user.id]);
 
   useEffect(() => {
-    if (session) {
       handleStatusEvents();
-    }
   }, [session, handleStatusEvents]);
 
   useEffect(() => {
@@ -140,7 +139,8 @@ export const WelcomeScreen: React.FC = () => {
             transition={{ duration: 1, delay: 3 }}
             variants={animationVariants}
           >
-            {events.length > 0 && <CheckStatus events={events} />}
+            {/* {events.length > 0 && <CheckStatus events={events} loading={loading} />} */}
+            <CheckStatus events={events} loading={loading} />
           </motion.div>
         </div>
       </div>
