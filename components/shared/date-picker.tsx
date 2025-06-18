@@ -53,7 +53,6 @@ export const DatePicker: React.FC<Props> = ({ value, onChange }) => {
             "w-full justify-start text-left font-normal",
             !date && "text-muted-foreground"
           )}
-          onClick={() => alert('Клик')}
         >
           <CalendarIcon />
           {date?.from ? (
