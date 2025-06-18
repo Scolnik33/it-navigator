@@ -94,7 +94,7 @@ export const AddEventForm: React.FC<Props> = ({
         imageUrl = json.url;
       }
 
-      await CreateEvent({ ...data, image: imageUrl });
+      await CreateEvent({ ...data, image: imageUrl == "" ? null : imageUrl });
 
       toast.success(
         "Мероприятие успешно отправлено на подтверждение модераторам",
@@ -133,7 +133,9 @@ export const AddEventForm: React.FC<Props> = ({
               {...register("title")}
             />
             {errors.title && (
-              <p className="mt-1 text-sm text-red-600">{errors.title.message}</p>
+              <p className="mt-1 text-sm text-red-600">
+                {errors.title.message}
+              </p>
             )}
           </div>
 
@@ -166,13 +168,18 @@ export const AddEventForm: React.FC<Props> = ({
               {...register("company")}
             />
             {errors.company && (
-              <p className="mt-1 text-sm text-red-600">{errors.company.message}</p>
+              <p className="mt-1 text-sm text-red-600">
+                {errors.company.message}
+              </p>
             )}
           </div>
 
           <div>
             <div className="flex items-center mb-2 space-x-1">
-              <Label htmlFor="description" className="font-semibold text-gray-700">
+              <Label
+                htmlFor="description"
+                className="font-semibold text-gray-700"
+              >
                 Описание
               </Label>
               <Asterisk color="#fb2c37" width={12} height={12} />
@@ -180,7 +187,9 @@ export const AddEventForm: React.FC<Props> = ({
             <Textarea
               id="description"
               className={`w-full resize-none rounded-md border px-3 py-2 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 max-h-[190px] ${
-                errors.description ? "border-red-500 max-h-[120px]" : "border-gray-300"
+                errors.description
+                  ? "border-red-500 max-h-[120px]"
+                  : "border-gray-300"
               }`}
               {...register("description")}
             />
