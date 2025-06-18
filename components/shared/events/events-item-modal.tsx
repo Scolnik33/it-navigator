@@ -23,6 +23,7 @@ import { usePathname } from "next/navigation";
 import { approveEvent } from "@/services/approve-event";
 import { useAdminEventsStore } from "@/store/admin-events";
 import Link from "next/link";
+import { useSectionsStore } from "@/store/sections";
 
 interface Props {
   id: number;
@@ -36,6 +37,7 @@ export const EventsItemModal: React.FC<Props> = ({
   setIsOpen,
 }) => {
   const [isApproving, setIsApproving] = useState(false);
+  const getEvents = useSectionsStore((state) => state.getEvents);
   const event = useSectionsDetailsStore((state) => state.event);
   const getEvent = useSectionsDetailsStore((state) => state.getEvent);
   const getAdminEvents = useAdminEventsStore((state) => state.getAdminEvents);
@@ -58,6 +60,7 @@ export const EventsItemModal: React.FC<Props> = ({
       setIsApproving(true);
       await approveEvent(id);
       await getAdminEvents();
+      await getEvents();
       toast.success("Мероприятие успешно подтверждено", {
         icon: "✅",
       });
