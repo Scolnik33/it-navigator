@@ -113,7 +113,7 @@ export const SidebarItem: React.FC<
                 <DialogTrigger asChild>
                   <Button variant={"default"}>К мероприятию</Button>
                 </DialogTrigger>
-                <DialogContent>
+                <DialogContent className="max-h-[75vh] overflow-y-auto">
                   <DialogHeader>
                     <DialogTitle>
                       <Title
