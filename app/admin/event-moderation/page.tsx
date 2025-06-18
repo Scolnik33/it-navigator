@@ -4,6 +4,7 @@ import { Container, EventsItem } from "@/components/shared";
 import { EventsSkeleton } from "@/components/shared/events/skeleton/events-skeleton";
 import { Button } from "@/components/ui";
 import { useAdminEventsStore } from "@/store/admin-events";
+import { useSectionsStore } from "@/store/sections";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -14,6 +15,7 @@ export default function EventModeration() {
   const hasMore = useAdminEventsStore((state) => state.hasMore);
   const loadMoreEvents = useAdminEventsStore((state) => state.loadMoreEvents);
   const getAdminEvents = useAdminEventsStore((state) => state.getAdminEvents);
+  const getEvents = useSectionsStore((state) => state.getEvents);
   const { data: session, status } = useSession();
   const router = useRouter();
 
@@ -21,6 +23,7 @@ export default function EventModeration() {
 
   const handleAdminEvents = async () => {
     await getAdminEvents();
+    await getEvents();
   };
 
   useEffect(() => {

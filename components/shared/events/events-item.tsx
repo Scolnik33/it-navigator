@@ -70,7 +70,7 @@ export const EventsItem: React.FC<
             <div className="p-4 w-full">
               <Title
                 className="font-bold"
-                text={title.length > 30 ? title.slice(0, 30) + "..." : title}
+                text={title.length > 25 ? title.slice(0, 25) + "..." : title}
                 size="sm"
               />
               <p className="text-slate-600 leading-relaxed font-light min-h-[120px] mt-2">
