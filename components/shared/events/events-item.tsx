@@ -51,7 +51,7 @@ export const EventsItem: React.FC<
           <div onClick={() => setIsOpen(true)}>
             <img
               className="w-full max-h-[214px] h-[172px] object-cover object-center rounded-t-2xl"
-              src={image ?? "./images/block-without-image.webp"}
+              src={image ?? "/images/block-without-image.webp"}
               alt={title}
             />
             {pathname !== "/admin/event-moderation" &&
